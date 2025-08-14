@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Enter Numbers</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>Create New Binary Search Tree</h1>
+
+<!-- Form with conditional value -->
+<form action="/process-numbers" method="post" id="treeForm">
+<!--    <input type="text" name="numbers" id="numbersInput"-->
+<!--           th:value="${#strings.isEmpty(enteredNumbers) ? '' : enteredNumbers}"-->
+<!--           placeholder="comma-separated numbers">-->
+
+    <textarea name="numbers" id="numbersInput" rows="5"
+              placeholder="comma-separated numbers"
+              th:text="${#strings.isEmpty(enteredNumbers) ? '' : enteredNumbers}"></textarea>
+
+    <button type="button" onclick="clearForm()" class="btn btn-clear">Clear</button>
+
+    <div class="button-group form-buttons">
+    <button type="submit" name="treeType" value="regular" class="bst-regular">Create BST</button>
+    <button type="submit" name="treeType" value="balanced" class="bst-balanced">Create Balanced BST</button>
+    </div>
+
+
+</form>
+
+<div th:if="${error}" id="error-div" class="alert">
+    <span th:text="${error}"></span>
+</div>
+
+<div class="button-group">
+    <a href="/">
+        <button class="btn-home">Go Back Home</button>
+    </a>
+    <a href="/previous-trees">
+        <button class="btn-database">Show Previous Trees</button>
+    </a>
+</div>
+
+<div th:if="${treeJson}" class="tree-display">
+    <h3 class="input-container">
+        <span class="input-label">Input:</span>
+        <span class="input-numbers" th:text="${inputNumbers}"></span>
+    </h3>
+
+    <div th:if="${isBalanced}" class="balanced-indicator">
+        Balanced
+    </div>
+
+    <pre th:text="${treeJson}"></pre>
+</div>
+
+<script>
+    function clearForm() {
+        document.getElementById('numbersInput').value = '';
+        const errorDiv = document.getElementById('error-div');
+        if (errorDiv) {
+            errorDiv.style.display = 'none';
+        }
+    }
+</script>
+
+</body>
+</html>
+

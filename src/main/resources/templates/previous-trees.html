@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Previous Trees</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+</head>
+<body>
+<h1>Previously Generated BSTs</h1>
+
+
+<div th:if="${isEmpty}" class="empty">
+    <p>No trees in the database yet...</p>
+</div>
+
+<div class="button-group">
+    <a href="/">
+        <button class="btn-home">Back to Home</button>
+    </a>
+    <a href="/enter-numbers">
+        <button>Enter Numbers</button>
+    </a>
+
+</div>
+
+<div th:each="tree : ${previousTrees}" class="tree-display">
+    <h3 class="input-container">
+        <span class="input-label">Input:</span>
+        <span class="input-numbers" th:text="${tree['inputNumbers']}"></span>
+    </h3>
+
+    <div th:if="${tree['isBalanced']}" class="balanced-indicator">
+        Balanced
+    </div>
+
+    <pre th:text="${tree['treeJson']}"></pre>
+</div>
+
+<div th:if="${not isEmpty}" class="button-group">
+    <a href="/clean-db">
+        <button class="btn-clear-db">Clear All Trees</button>
+    </a>
+</div>
+
+
+</body>
+</html>
