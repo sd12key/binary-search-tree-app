@@ -25,7 +25,7 @@ public class TreeEntity {
     @Column(updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // Constructors
+    // constructors
     public TreeEntity() {}
 
     public TreeEntity(String inputNumbers, String treeJson) {

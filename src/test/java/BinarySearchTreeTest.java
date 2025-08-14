@@ -99,7 +99,7 @@ class BinarySearchTreeTest {
         assertNull(bst.getRoot());
     }
 
-    // Traversal Tests (output verification would need System.out redirection)
+    // Traversal Tests
     @Test
     void inOrder_PrintsCorrectSequence() {
         bst.insert(4);
